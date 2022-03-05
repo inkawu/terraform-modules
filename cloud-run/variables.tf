@@ -35,10 +35,6 @@ variable "ports" {
   }
 }
 
-variable "domain" {
-  type = string
-}
-
 variable "container_image" {
   type = string
 }
