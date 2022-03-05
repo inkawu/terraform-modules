@@ -35,7 +35,7 @@ variable "ports" {
   }
 }
 
-variable "sub_domain" {
+variable "domain" {
   type = string
 }
 

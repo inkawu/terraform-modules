@@ -63,7 +63,7 @@ resource "google_cloud_run_service_iam_policy" "noauth" {
 
 resource "google_cloud_run_domain_mapping" "main" {
   location = var.region
-  name     = var.sub_domain
+  name     = var.domain
 
   metadata {
     namespace = var.project_id
