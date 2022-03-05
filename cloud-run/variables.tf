@@ -35,6 +35,10 @@ variable "ports" {
   }
 }
 
+variable "sub_domain" {
+  type = string
+}
+
 variable "container_image" {
   type = string
 }
