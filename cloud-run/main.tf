@@ -62,11 +62,11 @@ resource "google_cloud_run_service_iam_policy" "noauth" {
 }
 
 resource "google_cloud_run_domain_mapping" "main" {
-  location = var.location
+  location = var.region
   name     = var.sub_domain
 
   metadata {
-    namespace = var.project
+    namespace = var.project_id
   }
 
   spec {
