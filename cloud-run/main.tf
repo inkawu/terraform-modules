@@ -72,4 +72,9 @@ resource "google_cloud_run_domain_mapping" "main" {
   spec {
     route_name = google_cloud_run_service.main.name
   }
+
+  depends_on = [
+    google_cloud_run_service_iam_policy.noauth,
+    google_cloud_run_service.main
+  ]
 }
