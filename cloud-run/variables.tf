@@ -6,10 +6,6 @@ variable "region" {
   type = string
 }
 
-variable "zone" {
-  type = string
-}
-
 variable "app_name" {
   type = string
 }
