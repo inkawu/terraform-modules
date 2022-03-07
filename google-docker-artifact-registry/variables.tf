@@ -2,6 +2,6 @@ variable "repository_id" {
   type = string
 }
 
-variable "project_id" {
+variable "region" {
   type = string
 }
