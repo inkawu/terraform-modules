@@ -1,3 +1,8 @@
+resource "google_service_account" "default" {
+  account_id   = "artifact-reader"
+  display_name = "Artifact reader service account"
+}
+
 resource "google_compute_instance" "main" {
   name         = var.name
   machine_type = var.machine_type
@@ -11,7 +16,7 @@ resource "google_compute_instance" "main" {
   }
 
   metadata_startup_script = <<EOT
-    docker run -e ${join("-e ", var.env_vars)} ${var.container_image}
+    docker run -e ${join(" -e ", var.env_vars)} ${var.container_image}
   EOT
 
 
@@ -19,5 +24,11 @@ resource "google_compute_instance" "main" {
     network = "default"
 
     access_config {}
+  }
+
+  service_account {
+    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
+    email  = google_service_account.default.email
+    scopes = ["cloud-platform"]
   }
 }
