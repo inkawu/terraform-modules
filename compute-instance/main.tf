@@ -1,6 +1,12 @@
-resource "google_service_account" "default" {
-  account_id   = "artifact-reader"
-  display_name = "Artifact reader service account"
+resource "google_service_account" "artifact-reader" {
+  account_id   = "${var.name}-artifact-reader"
+  display_name = "Artifact reader service account for ${var.name} compute instance"
+}
+
+resource "google_service_account_iam_member" "admin-account-iam" {
+  service_account_id = google_service_account.artifact-reader.name
+  role               = "roles/artifactregistry.reader"
+  member             = "serviceAccount:${google_service_account.artifact-reader.email}"
 }
 
 resource "google_compute_instance" "main" {
