@@ -23,8 +23,5 @@ variable "container_image" {
 }
 
 variable "env_vars" {
-  type = list(object({
-    name  = string
-    value = string
-  }))
+  type = list(string)
 }

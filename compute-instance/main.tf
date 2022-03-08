@@ -10,14 +10,10 @@ resource "google_compute_instance" "main" {
     }
   }
 
-  labels = {
-    "container-vm" = "cos-stable-93-16623-102-23"
-  }
+  metadata_startup_script = <<EOT
+    docker run ${join("-e ", var.env_vars)} ${var.container_image}
+  EOT
 
-  metadata = {
-    "gce-container-declaration" = "# DISCLAIMER:\n# This container declaration format is not a public API and may change without\n# notice. Please use gcloud command-line tool or Google Cloud Console to run\n# Containers on Google Compute Engine.\n\nspec:\n  containers:\n  - env: ${jsonencode(var.env_vars)}\n    image: ${var.container_image}\n    name: instance-1\n    securityContext:\n      privileged: false\n    stdin: false\n    tty: false\n    volumeMounts: []\n  restartPolicy: Always\n  volumes: []\n"
-    "google-logging-enabled"    = "true"
-  }
 
   network_interface {
     network = "default"
