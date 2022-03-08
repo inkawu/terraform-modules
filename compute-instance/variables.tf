@@ -17,3 +17,14 @@ variable "boot_disk_type" {
 variable "image" {
   type = string
 }
+
+variable "container_image" {
+  type = string
+}
+
+variable "env_vars" {
+  type = list(object({
+    name  = string
+    value = string
+  }))
+}
