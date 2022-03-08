@@ -1,5 +1,5 @@
 resource "google_service_account" "artifact-reader" {
-  account_id   = "${var.name}-artifact-reader"
+  account_id   = "${var.name}-ar"
   display_name = "Artifact reader service account for ${var.name} compute instance"
 }
 
