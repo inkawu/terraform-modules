@@ -11,11 +11,13 @@ resource "google_compute_instance" "main" {
   }
 
   metadata_startup_script = <<EOT
-    docker run ${join("-e ", var.env_vars)} ${var.container_image}
+    docker run -e ${join("-e ", var.env_vars)} ${var.container_image}
   EOT
 
 
   network_interface {
     network = "default"
+
+    access_config {}
   }
 }
